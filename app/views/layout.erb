@@ -15,9 +15,27 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="/js/application.js"></script>
 
-  <title></title>
+  <title>RemixIt</title>
 </head>
 <body>
+  <% if current_user == nil %>
+  <nav class="nav-links">
+  <ul class="nav-ul">
+    <li class="nav-li"><a class="nav-li" href="/">Home</a></li>
+    <li class="nav-li"><a class="nav-li"  href="/users/new">Sign Up</a></li>
+    <li class="nav-li"><a class="nav-li"  href="/login">Log In</a></li>
+  </ul>
+</nav>
+<% end %>
+<% if current_user %>
+  <nav class="nav-links">
+  <ul class="nav-ul">
+    <li class="nav-li"><a class="nav-li" href="/">Home</a></li>
+    <li class="nav-li"><a id="new_form_button" class="nav-li" href="/users/1>">Profile</a></li>
+    <li class="logout"><a class="nav-li"  href="/logout">Logout</a></li>
+  </ul>
+  </nav>
+  <% end %>
   <%= yield %>
 </body>
 </html>
