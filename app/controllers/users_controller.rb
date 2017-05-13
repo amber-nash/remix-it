@@ -4,6 +4,8 @@ get '/users' do
 end
 
 get '/users/new' do
+  @user = User.new(params[:user])
+
   erb :'users/new.html'
 end
 
@@ -11,7 +13,8 @@ post '/users' do
 
   @user = User.new(params[:user])
   if @user.save
-    redirect '/users'
+    login(@user)
+    redirect '/'
   else
     erb :'users/new.html'
   end
