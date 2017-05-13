@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
   # Remember to create a migration!
-  validates :name, presence: true
   validates :email, presence: true
   validates :email, uniqueness: true
   validates :password_hash, presence: true
@@ -14,9 +13,7 @@ class User < ActiveRecord::Base
     self.password_hash = @password
   end
 
-  def create
-    @user = User.new(params[:user])
-    @user.password = params[:password]
-    @user.save!
+  def authenticate(check_password)
+    self.password == check_password
   end
 end
